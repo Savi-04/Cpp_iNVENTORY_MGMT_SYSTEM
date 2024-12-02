@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{% load static %}
+{% block content %}
+
+<div class="container mt-3">
+    <h2 class="text-center mb-4">Staff Members</h2>
+    <div class="row">
+        {% for profile in profiles %}
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ profile.user.username }}</h5>
+                            <p class="card-text"><strong>Email:</strong> {{ profile.user.email }}</p>
+                            <p class="card-text"><strong>Phone:</strong> {{ profile.phone }}</p>
+                            <p class="card-text"><strong>Address:</strong> {{ profile.address }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}
+

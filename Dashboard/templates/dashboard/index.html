@@ -1,0 +1,72 @@
+
+
+{% block content %}
+<!-- for main top dashbaord view -->
+<div class="container mt-4">
+    <div class="card border-info mb-3">
+        <div class="card-header text-center text-white">Dashboard statistics</div>
+        <div class="card-body">
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body text-center shadow">
+                            <a class="nav-link {% if url_name == 'staff'%}active{% endif %}" href="{% url 'staff' %}">Staffs</a>
+                            <h3>{{profile_count}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body text-center shadow">
+                            <a class="nav-link {% if url_name == 'products'%}active{% endif %}" href="{% url 'products' %}">Products</a>
+                            <h3>{{product_count}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body text-center shadow">
+                            <a class="nav-link {% if url_name == 'orders'%}active{% endif %}" href="{% url 'orders' %}">Orders</a>
+                            <h3>{{order_count}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <div class="container">
+    <div class="row mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Notice</h5>
+                </div>
+                <div class="card-body">
+                    {% if notifications %}
+                        <ul class="list-group">
+                            {% for notification in notifications %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>Message:</strong> {{ notification.message|default:"No message available" }}<br>
+                                        <strong>Timestamp:</strong> {{ notification.timestamp|default:"No timestamp available" }}
+                                    </div>
+                                    <form method="POST" action="" class="d-inline-block">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="receipt_handle" value="{{ notification.receipt_handle }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Mark as Read</button>
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-muted">No new notifications.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+ {% endblock %}
+            

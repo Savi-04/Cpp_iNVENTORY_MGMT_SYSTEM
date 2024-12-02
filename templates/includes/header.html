@@ -1,0 +1,34 @@
+{% load static %}
+<header>
+  {% with request.resolver_match.url_name as url_name %}
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+           <!--logo-->
+          <a class="navbar-brand" href="#"><img src="{% static 'images/mylogo.webp' %}" alt="brand logo" class="logo"></a>
+          <button class="navbar-toggler btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+            <!--navigation items for my header-->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2">
+              {% if user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'dashboard'%}active{% endif %}" aria-current="page" href="{% url 'dashboard' %}"> Dashboard</a>
+              </li>
+              {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              {% if request.user.is_authenticated %}
+              <li class="nav-item ">
+                <a class="nav-link {% if url_name == 'accounts_logout'%}active{% endif %}" href="/accounts/logout/">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item ">
+                <a class="nav-link {% if url_name == 'accounts_login'%}active{% endif %}" href="/accounts/login/">Login</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+ {% endwith %}       
+</header>

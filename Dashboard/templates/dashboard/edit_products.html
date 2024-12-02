@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Product</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <!-- Display existing image -->
+        {% if existing_image_url %}
+        <div class="form-group">
+            <label for="existing-image">Existing Image:</label>
+            <div>
+                <img src="{{ existing_image_url }}" alt="Existing Image" style="width: 150px; height: 150px; object-fit: cover;">
+            </div>
+        </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary mt-3">Update Product</button>
+    </form>
+</div>
+{% endblock %}

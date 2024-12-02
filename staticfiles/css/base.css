@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Roboto:wght@400;500&display=swap');
+
+:root {
+    /** Fonts */
+    --title: 'EB Garamond', serif;
+    --main-font: 'Roboto', serif;
+
+    /* Colours */
+    --background: #3f006a0f;
+    --darkblue: #1d3854;
+    --beige: #EAD8B1;
+    --lightblue: #6A9AB0;
+    --black: #000;
+    --off-white: #f6f6f6;
+    --white: #fff;
+    --orange: #ffbf50;
+    --darkgrey: #666;
+    --toggle:#e7ae3e;
+    
+   
+
+    /* Utils */
+    --smal-box-shadow: 1px -1px 7px 0 #00000061;
+    --border: 1px solid #00000030;
+}
+
+/* Header */
+.navbar {
+    background-color: var(--darkblue);
+    box-shadow: var(--smal-box-shadow);
+}
+
+a.nav-link{
+    color: var(--beige);
+}
+
+.nav-link.active {
+    color: var(--lightblue) !important; 
+    font-weight: bold;
+  }
+
+.navbar-toggler {
+    background-color:var(--toggle); 
+    border-color:var(--toggle); 
+  }
+img.logo{
+    width: auto;
+    max-width: 100%;
+    max-height: 60px;
+}
+
+.active {
+    border-bottom: 2px solid var(--orange);
+    font-weight: 500;
+}
+/* main design */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--main-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--title);
+}
+
+main {
+    flex: 1 0 auto;
+    background-color: var(--beige);
+    padding: 0px 100px !important;
+}
+
+
+
+/* form styling */
+.form{
+    width: 80%;
+    margin: 3% auto;
+    box-shadow: var(--smal-box-shadow);
+    border-radius: 5px;
+    background-color: var(--lightblue);
+}
+#id_password_helptext{
+    display: none !important;
+}
+#div_id_remember{
+    display: flex !important;
+    gap: 1.5rem !important;
+    justify-content: center;
+}
+/* footer styling */
+footer {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-top: var(--border);
+    background-color: var(--darkblue);
+
+}
+.copyright{
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--off-white);
+}
+.card-header{
+    background-color: var(--lightblue);
+}
+
+td, th{
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+tr{
+    border: 2px solid green;
+}

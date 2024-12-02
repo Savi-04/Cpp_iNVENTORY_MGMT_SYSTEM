@@ -1,0 +1,28 @@
+{% extends "account/base_entrance.html" %}
+{% load allauth i18n %}
+
+{% block title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h1>{% trans "Register" %}</h1>
+
+    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">Sign in</a>.{% endblocktrans %}</p>
+
+    <form class="form p-2" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{form|crispy}}
+        
+        <div class="mb-3">
+            <label for="phone">Phone Number</label>
+            <input type="text" name="phone" id="phone" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="address">Address</label>
+            <textarea name="address" id="address" class="form-control" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-25">{% trans "Sign Up" %}</button>
+    </form>
+</div>
+{% endblock %}

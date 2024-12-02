@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content%}
+{% include "./index.html" %}
+
+<!-- Add alert messages here -->
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="container mt-3 mb-3">
+  <div class="row">
+    <div class="col-md-6 ">
+      <h2>Add New Product</h2>
+      <form method="post" enctype="multipart/form-data"> 
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary mt-2">Add Product</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">Product</th>
+            <th scope="col">Category</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Image</th>
+            <th scope="col">Activity</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {% for product in products %}
+          <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>
+              {% if product.image_url %}
+              <img src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 100px; height: 100px; object-fit: cover;">
+              {% else %}
+              <span>No image</span>
+              {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'edit_product' product.product_id %}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{% url 'delete_product' product.product_id %}" class="btn btn-danger btn-sm ms-2">Delete</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center">No products available.</td> 
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

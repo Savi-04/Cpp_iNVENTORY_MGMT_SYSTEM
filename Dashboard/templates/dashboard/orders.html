@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include "./index.html" %}
+<div class="container mt-3">
+    <table class="table">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col">Product</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Ordered by</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.product_name }}</td>
+                <td>{{ order.category }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.ordered_by }}</td>
+                <td>{{ order.status }}</td>
+                {% if order.status == 'Pending'%}
+                <td>
+                    <form method="post" action="{% url 'orders' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                        <input type="hidden" name="action" value="approve">
+                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                    </form>
+                    <form method="post" action="{% url 'orders' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                        <input type="hidden" name="action" value="reject">
+                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                    </form>
+                </td>
+                {% else %}
+                <td> None </td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No orders available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

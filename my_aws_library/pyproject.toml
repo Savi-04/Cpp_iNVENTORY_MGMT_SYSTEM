@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]  
+build-backend = "setuptools.build_meta"   
+
+[project]
+name = "aws_utility_library_savicppapp"              
+version = "1.0.1"                        
+description = "A Python library for AWS utilities (Lambda, SNS, SQS, DynamoDB, and S3)"
+readme = "README.md"                      
+license = {text = "MIT License"}
+authors = [
+    {name = "Savitanshu Somvanshi", email = "shivangsomvanshi124@gmail.com"}  # Author details
+]
+requires-python = ">=3.6"                 
+dependencies = ["boto3>=1.20,<2.0"]                 
+
+[tool.setuptools.packages.find]
+where = ["src"]

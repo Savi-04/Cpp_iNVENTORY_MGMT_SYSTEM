@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+src/aws_utility_library_savicppapp/__init__.py
+src/aws_utility_library_savicppapp/dynamodb.py
+src/aws_utility_library_savicppapp/lambda_utility.py
+src/aws_utility_library_savicppapp/s3.py
+src/aws_utility_library_savicppapp/sqs_sns.py
+src/aws_utility_library_savicppapp.egg-info/PKG-INFO
+src/aws_utility_library_savicppapp.egg-info/SOURCES.txt
+src/aws_utility_library_savicppapp.egg-info/dependency_links.txt
+src/aws_utility_library_savicppapp.egg-info/requires.txt
+src/aws_utility_library_savicppapp.egg-info/top_level.txt

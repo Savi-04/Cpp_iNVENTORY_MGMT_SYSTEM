@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "./index.html" %}
+<div class="container mt-3 mb-4">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="data:image/png;base64,{{ pie_chart }}" alt="Pie Chart" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <img src="data:image/png;base64,{{ bar_graph }}" alt="Bar Graph" class="img-fluid">
+        </div>
+    </div>
+</div>
+{%endblock%}
